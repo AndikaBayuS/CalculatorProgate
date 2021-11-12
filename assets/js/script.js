@@ -142,7 +142,6 @@ document.addEventListener("keypress", function (event) {
   var charCode = typeof event.which == "number" ? event.which : event.keyCode;
   var string = String.fromCharCode(charCode);
 
-  // Block the default event actions from activating.
   event.preventDefault();
 
   if (charCode && !isNaN(string)) {
@@ -151,7 +150,6 @@ document.addEventListener("keypress", function (event) {
     return;
   }
 
-  // Catch operators here.
   switch (string) {
     case "+":
     case "-":
@@ -163,16 +161,12 @@ document.addEventListener("keypress", function (event) {
 });
 
 document.addEventListener("keyup", function (event) {
-  // Capture the enter event code and just make it click the equal sign.
-  // This is the worst kind of reusability, but it's reusability anyway.
   if (event.code === "Enter") {
     event.preventDefault();
     document.querySelector(".calc-equal").click();
-  } else if (event.keyCode === "Backspace") {
-    // Catch that backspace.
+  } else if (event.code === "Backspace") {
     deleteNumber();
     updateScreen(currentNumber);
   }
 });
-
 // End of keypress interception
